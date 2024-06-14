@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Profile</title>
+    <link rel="stylesheet" type="text/css" href= "static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+            {% comment %} margin-left:300px;
+            marfin-right:300px; {% endcomment %}
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #dbdbdb;
+            margin-left:300px;
+            margin-right:400px;
+            {% comment %} overflow: scroll; {% endcomment %}
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-details {
+            flex: 1;
+        }
+        .profile-details h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: normal;
+        }
+        .profile-details p {
+            margin: 5px 0;
+            color: #888;
+        }
+        .profile-stats {
+            display: flex;
+            margin-top: 10px;
+        }
+        .profile-stats div {
+            margin-right: 20px;
+        }
+        .profile-stats div span {
+            font-weight: bold;
+        }
+        .posts {
+            {% comment %} display: flex; {% endcomment %}
+            {% comment %} flex-wrap: wrap;
+            padding: 20px;
+            gap: 10px;
+            justify-content: center; {% endcomment %}
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #dbdbdb;
+            margin-left:300px;
+            margin-right:400px;
+
+            
+        }
+        .post {
+            width: 30%;
+            max-width: 200px;
+            position: relative;
+        }
+        .post img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .post .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px;
+            text-align: center;
+            display: none;
+        }
+        .post:hover .caption {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-header">
+        <h2 style="margin-left:280px;display:inline-block;">Instagram</h2>
+        <a href="" style="text-decoration:none; margin-left:690px;"><button style="background-color:DodgerBlue; color: White; padding:8px 18px; border-radius:20%;border:none; ">Log in</button></a>
+        <a href="" style="text-decoration:none; color:DadgerBlue; padding:20px;">SignUp</a>
+    </div> <hr>
+    <div class="profile-header">
+        <div class="profile-picture">
+            <h1 class="cont"><img style="border-radius:60%" height="200px" width="200px" src="{{user.userdetails.profilepic.url}}" alt="profile">
+            </h1>
+        </div>
+        <div class="profile-details">
+            <h1>{{user.first_name}}</h1>
+            <p>{{user.userdetails.bio}}</p>
+            <div class="profile-stats">
+                <div><span>{{user.id}}</span><a href="#posts">posts</a></div>
+                <div><span>{{followers}}</span><a href="">followers</a></div>
+                <div ><span>{{following}}</span><a href="">following</a></div>
+            </div>
+            <br><br>
+            <div>
+                <a href="{% url "follow" user.id %}" style="text-decoration:none; margin-left:10px;margin-right:30px;"><button>Follow</button></a>
+                <a href="" style="text-decoration:none;"><button>Message</button></a>
+            </div>
+        </div>    
+    </div>
+    <div class="posts" id="posts">
+        {% load static %}
+        <div style="display: flex;justify-content:space-evenly;margin:3px;">
+            <div class="post">
+                <img src="{% static "images/Hanuman.JPG" %}" alt="Post 1">
+            </div>
+            <div class="post">
+                <img src="{{user.userdetails.profilepic.url}}" alt="Post 2">
+            </div>
+            <div class="post">
+                <img src="{{user.userdetails.profilepic.url}}" alt="Post 3">
+            </div>
+        </div>
+        <div style="display: flex; justify-content:space-evenly;margin:3px;">
+            <div class="post">
+                <img src="{{user.userdetails.profilepic.url}}" alt="Post 4">
+            </div>
+            <div class="post">
+                <img src="{{user.userdetails.profilepic.url}}" alt="Post 5">
+            </div>
+            <div class="post">
+                <img src="{{user.userdetails.profilepic.url}}" alt="Post 6">
+            </div>
+        </div>
+        <div style="display: flex; justify-content:space-evenly;margin:3px">
+            <div class="post">
+                <img src="{{user.userdetails.profilepic.url}}" alt="Post 4">
+            </div>
+            <div class="post">
+                <img src="{{user.userdetails.profilepic.url}}" alt="Post 5">
+            </div>
+            <div class="post">
+                <img src="{{user.userdetails.profilepic.url}}" alt="Post 6">
+            </div> 
+        </div>
+        <!-- Add more posts as needed -->
+    </div>
+    {% comment %} <script src="script.js"></script> {% endcomment %}
+</body>
+</html>
