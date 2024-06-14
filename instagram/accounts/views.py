@@ -17,7 +17,6 @@ def registerUser(request):
         mobile = request.POST.get('mobile')
         confirmPassword = request.POST.get('confirmPassword')
         profilepic=request.FILES.get('profilepic')
-        bio=re
 
         if password == confirmPassword:
             newuser = User.objects.create_user(
